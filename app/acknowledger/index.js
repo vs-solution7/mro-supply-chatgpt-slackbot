@@ -52,10 +52,15 @@ app.command("/mrobot", async ({ command, ack, respond, say }) => {
   }
 });
 
-app.message(async ({ message, context }) => {
+app.message(async ({ message, say, context }) => {
   const { channel, subtype } = message;
   const userMessage = message.text;
   const { botUserId } = context;
+
+  await say({
+    channel,
+    text: ":thinking_face:",
+  });
 
   const params = {
     FunctionName: BOT_FUNCTION_NAME,
