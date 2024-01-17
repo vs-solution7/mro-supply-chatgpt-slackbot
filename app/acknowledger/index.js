@@ -13,7 +13,7 @@ const awsLambdaReceiver = new AwsLambdaReceiver({
 const app = new App({
   token: SLACK_BOT_TOKEN,
   receiver: awsLambdaReceiver,
-  logLevel: "debug",
+  logLevel: "info",
 });
 
 const validModels = ["gpt-3.5-turbo", "gpt-4"];
@@ -36,7 +36,7 @@ app.command("/mrobot", async ({ command, ack, respond, say }) => {
       updated_at: new Date().toISOString(),
     });
     await respond(
-      `You have started a conversation with MROSupply-GPT-Assistance in this channel using the engine '${selectedModel}'.`
+      `You have started a conversation with MRO-Assistance in this channel using the engine '${selectedModel}'.`
     );
     await say("Hey there :wave: How can I help?");
   } else if (action === "stop") {
@@ -47,20 +47,15 @@ app.command("/mrobot", async ({ command, ack, respond, say }) => {
     );
   } else {
     await respond(
-      `Invalid subcommand. Use "/GPTBot start [engine]" or "/mrobot stop".`
+      `Invalid subcommand. Use "/mrobot start [engine]" or "/mrobot stop".`
     );
   }
 });
 
-app.message(async ({ message, say, context }) => {
+app.message(async ({ message, context }) => {
   const { channel, subtype } = message;
   const userMessage = message.text;
   const { botUserId } = context;
-
-  await say({
-    channel,
-    text: ":thinking_face:",
-  });
 
   const params = {
     FunctionName: BOT_FUNCTION_NAME,
