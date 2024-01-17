@@ -1,0 +1,13 @@
+dist
+node_modules
+.serverless
+.envrc
+/.env
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/.gitignore
+/.idea/aws.xml
+/.idea/git_toolbox_prj.xml
+/.idea/GPTBot.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
